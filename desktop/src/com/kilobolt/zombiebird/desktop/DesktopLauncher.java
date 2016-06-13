@@ -12,7 +12,7 @@ public class DesktopLauncher {
 		config.title = "Zombie Bird";
         config.width = 480;
         config.height = 320;
-        
+
 		new LwjglApplication(new ZBGame(), config);
 	}
 }
