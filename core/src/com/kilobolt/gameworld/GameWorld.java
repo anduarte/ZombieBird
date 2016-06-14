@@ -2,6 +2,7 @@ package com.kilobolt.gameworld;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
+import com.kilobolt.gameobjects.Bird;
 
 /**
  * Created by andre on 13/06/2016.
@@ -11,7 +12,20 @@ import com.badlogic.gdx.math.Rectangle;
 public class GameWorld {
 
     // ****** Test the camera ******
-    private Rectangle rectangle = new Rectangle(0, 0, 17, 12);
+//    private Rectangle rectangle = new Rectangle(0, 0, 17, 12);
+
+    private Bird bird;
+
+    /**
+     * Constructor of the GameWorld
+     * The midPointY will make that the bird stays in the middle of the screen
+     * no matter what resolution the game runs
+     *
+     * @param midPointY Vertical middle of the screen
+     */
+    public GameWorld(int midPointY) {
+        bird = new Bird(33, midPointY - 5, 17, 12);
+    }
 
     /**
      * Update the game objects
@@ -19,19 +33,29 @@ public class GameWorld {
      * @param delta Number of seconds since the last time that render method was called
      */
     public void update(float delta) {
-        Gdx.app.log("GameWorld", "update");
+        bird.update(delta);
 
+//        Gdx.app.log("GameWorld", "update");
         // ****** Test the camera ******
-        rectangle.x++;
-        if (rectangle.x > 137) rectangle.x = 0;
+//        rectangle.x++;
+//        if (rectangle.x > 137) rectangle.x = 0;
     }
 
     /**
      * Getter
      *
+     * @return
+     */
+    public Bird getBird() {
+        return bird;
+    }
+
+    /**
+     * Getter
+     * USED TO DEBUG
      * @return Rectangle used to test
      */
-    public Rectangle getRectangle() {
-        return rectangle;
-    }
+//    public Rectangle getRectangle() {
+//        return rectangle;
+//    }
 }

@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.kilobolt.gameworld.GameRenderer;
 import com.kilobolt.gameworld.GameWorld;
+import com.kilobolt.zbhelpers.InputHandler;
 
 /**
  * Created by andre on 13/06/2016.
@@ -25,11 +26,24 @@ public class GameScreen implements Screen {
      * Construct of the game screen class
      */
     public GameScreen() {
-        Gdx.app.log("GameScreen", "Attached");
+        // Gdx.app.log("GameScreen", "Attached");
+
+        float screenWidth = Gdx.graphics.getWidth();
+        float screenHeight = Gdx.graphics.getHeight();
+        float gameWidth = 136;
+        float gameHeight = screenHeight / (screenWidth / gameWidth);
+
+        // Remember that our game will be 136 units wide. Our screen may be 1080 pixels wide,
+        // so we must scale everything down by about 1/8.
+        // To get the game height, we must take the screen height and scale that down by the same factor!
+        int midPointY = (int) (gameHeight / 2);
 
         // Initialize helpers
-        gameWorld = new GameWorld();
+        gameWorld = new GameWorld(midPointY);
         gameRenderer = new GameRenderer(gameWorld); // Need to have  reference to the game world that it will be drawing
+
+        // We are telling libGDX to take our new InputHandler as its processor
+        Gdx.input.setInputProcessor(new InputHandler(gameWorld.getBird()));
     }
 
     @Override
