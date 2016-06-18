@@ -22,6 +22,9 @@ public class GameScreen implements Screen {
     /** Instance responsible for rendering the game objects */
     private GameRenderer gameRenderer;
 
+    // Will keep track of how long the game has been running
+    private float runTime = 0;
+
     /**
      * Construct of the game screen class
      */
@@ -40,7 +43,7 @@ public class GameScreen implements Screen {
 
         // Initialize helpers
         gameWorld = new GameWorld(midPointY);
-        gameRenderer = new GameRenderer(gameWorld); // Need to have  reference to the game world that it will be drawing
+        gameRenderer = new GameRenderer(gameWorld, (int) gameHeight, midPointY); // Need to have  reference to the game world that it will be drawing
 
         // We are telling libGDX to take our new InputHandler as its processor
         Gdx.input.setInputProcessor(new InputHandler(gameWorld.getBird()));
@@ -54,6 +57,8 @@ public class GameScreen implements Screen {
      * @param delta Number of seconds since the last time that render method was called
      */
     public void render(float delta) {
+        runTime += delta;
+
         // Sets a color to fill the screen with (RGB = 10, 15, 230), Opacity of 1 (100%)
         Gdx.gl.glClearColor(10/255.0f, 15/255.0f, 230/255.0f, 1f);
 
@@ -65,7 +70,7 @@ public class GameScreen implements Screen {
         //Gdx.app.log("GameScreen FPS", (int) (1 / delta) + "");
 
         gameWorld.update(delta);
-        gameRenderer.render();
+        gameRenderer.render(runTime);
     }
 
     @Override
