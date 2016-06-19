@@ -84,7 +84,7 @@ public class AssetLoader {
         // Get skull texture from the sprite
         skullUp = new TextureRegion(texture, 192, 0, 24, 14);
         // Create by flipping existing skullUp
-        skullDown = new TextureRegion(texture, 136, 16, 22, 3);
+        skullDown = new TextureRegion(skullUp);
         skullDown.flip(false, true);
 
         // Get bar texture from the sprite

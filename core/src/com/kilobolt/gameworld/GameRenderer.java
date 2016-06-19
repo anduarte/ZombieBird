@@ -60,7 +60,6 @@ public class GameRenderer {
      */
     public GameRenderer(GameWorld gameWorld, int gameHeight, int midPointY) {
         this.gameWorld = gameWorld;
-        camera = new OrthographicCamera();
 
         this.gameHeight = gameHeight;
         this.midPointY = midPointY;
@@ -68,6 +67,7 @@ public class GameRenderer {
         // Arguments
         // 1. If we want an orthographic camera
         // 2 and 3 the size of our game world
+        camera = new OrthographicCamera();
         camera.setToOrtho(true, 136, gameHeight);
 
         batcher = new SpriteBatch();
@@ -200,43 +200,29 @@ public class GameRenderer {
 
     private void drawGrass() {
         // Draw the grass
-        batcher.draw(grass, frontGrass.getX(), frontGrass.getY(),
-                frontGrass.getWidth(), frontGrass.getHeight());
-        batcher.draw(grass, backGrass.getX(), backGrass.getY(),
-                backGrass.getWidth(), backGrass.getHeight());
+        batcher.draw(grass, frontGrass.getX(), frontGrass.getY(), frontGrass.getWidth(), frontGrass.getHeight());
+        batcher.draw(grass, backGrass.getX(), backGrass.getY(), backGrass.getWidth(), backGrass.getHeight());
     }
 
     private void drawSkulls() {
-        batcher.draw(skullUp, pipe1.getX() - 1,
-                pipe1.getY() + pipe1.getHeight() - 14, 24, 14);
-        batcher.draw(skullDown, pipe1.getX() - 1,
-                pipe1.getY() + pipe1.getHeight() + 45, 24, 14);
+        batcher.draw(skullUp, pipe1.getX() - 1, pipe1.getY() + pipe1.getHeight() - 14, 24, 14);
+        batcher.draw(skullDown, pipe1.getX() - 1, pipe1.getY() + pipe1.getHeight() + 45, 24, 14);
 
-        batcher.draw(skullUp, pipe2.getX() - 1,
-                pipe2.getY() + pipe2.getHeight() - 14, 24, 14);
-        batcher.draw(skullDown, pipe2.getX() - 1,
-                pipe2.getY() + pipe2.getHeight() + 45, 24, 14);
+        batcher.draw(skullUp, pipe2.getX() - 1, pipe2.getY() + pipe2.getHeight() - 14, 24, 14);
+        batcher.draw(skullDown, pipe2.getX() - 1, pipe2.getY() + pipe2.getHeight() + 45, 24, 14);
 
-        batcher.draw(skullUp, pipe3.getX() - 1,
-                pipe3.getY() + pipe3.getHeight() - 14, 24, 14);
-        batcher.draw(skullDown, pipe3.getX() - 1,
-                pipe3.getY() + pipe3.getHeight() + 45, 24, 14);
+        batcher.draw(skullUp, pipe3.getX() - 1, pipe3.getY() + pipe3.getHeight() - 14, 24, 14);
+        batcher.draw(skullDown, pipe3.getX() - 1, pipe3.getY() + pipe3.getHeight() + 45, 24, 14);
     }
 
     private void drawPipes() {
-        batcher.draw(bar, pipe1.getX(), pipe1.getY(), pipe1.getWidth(),
-                pipe1.getHeight());
-        batcher.draw(bar, pipe1.getX(), pipe1.getY() + pipe1.getHeight() + 45,
-                pipe1.getWidth(), midPointY + 66 - (pipe1.getHeight() + 45));
+        batcher.draw(bar, pipe1.getX(), pipe1.getY(), pipe1.getWidth(), pipe1.getHeight());
+        batcher.draw(bar, pipe1.getX(), pipe1.getY() + pipe1.getHeight() + 45, pipe1.getWidth(), midPointY + 66 - (pipe1.getHeight() + 45));
 
-        batcher.draw(bar, pipe2.getX(), pipe2.getY(), pipe2.getWidth(),
-                pipe2.getHeight());
-        batcher.draw(bar, pipe2.getX(), pipe2.getY() + pipe2.getHeight() + 45,
-                pipe2.getWidth(), midPointY + 66 - (pipe2.getHeight() + 45));
+        batcher.draw(bar, pipe2.getX(), pipe2.getY(), pipe2.getWidth(), pipe2.getHeight());
+        batcher.draw(bar, pipe2.getX(), pipe2.getY() + pipe2.getHeight() + 45, pipe2.getWidth(), midPointY + 66 - (pipe2.getHeight() + 45));
 
-        batcher.draw(bar, pipe3.getX(), pipe3.getY(), pipe3.getWidth(),
-                pipe3.getHeight());
-        batcher.draw(bar, pipe3.getX(), pipe3.getY() + pipe3.getHeight() + 45,
-                pipe3.getWidth(), midPointY + 66 - (pipe3.getHeight() + 45));
+        batcher.draw(bar, pipe3.getX(), pipe3.getY(), pipe3.getWidth(), pipe3.getHeight());
+        batcher.draw(bar, pipe3.getX(), pipe3.getY() + pipe3.getHeight() + 45, pipe3.getWidth(), midPointY + 66 - (pipe3.getHeight() + 45));
     }
 }

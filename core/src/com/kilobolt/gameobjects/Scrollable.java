@@ -59,7 +59,7 @@ public abstract class Scrollable {
     }
 
     public float getTailX() {
-        return position.x - width;
+        return position.x + width;
     }
 
     public float getX() {
