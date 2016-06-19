@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * Created by andre on 14/06/2016.
  */
-public class Bird {
+public class  Bird {
 
     private Vector2 velocity;
     private Vector2 position;
@@ -50,6 +50,44 @@ public class Bird {
 
         // Give the new position of the bird
         position.add(velocity.cpy().scl(delta));
+
+        // Rotate counterclockwise (Rising)
+        if (velocity.y < 0) {
+            rotation -= 600 * delta; // Delta will make the bird rotate at the same rate even if the game slows down
+
+            if(rotation < -20) {
+                rotation = -20;
+            }
+        }
+
+        // Rotate clockwise (falling)
+        if (isFalling()) {
+            rotation += 480 * delta; // Delta will make the bird rotate at the same rate even if the game slows down
+
+            if (rotation > 90) {
+                rotation = 90;
+            }
+        }
+
+    }
+
+    /**
+     * Verifies if the bird is falling.
+     * Decide when the bird should begin rotating downwards
+     *
+     * @return True if it is falling
+     */
+    public boolean isFalling() {
+        return velocity.y > 110;
+    }
+
+    /**
+     * Determine when the bird should stop animating
+     *
+     * @return True if the bird stop animating
+     */
+    public boolean shouldntFlap() {
+        return velocity.y > 70;
     }
 
     /**

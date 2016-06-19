@@ -3,6 +3,7 @@ package com.kilobolt.gameworld;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
 import com.kilobolt.gameobjects.Bird;
+import com.kilobolt.gameobjects.ScrollHandler;
 
 /**
  * Created by andre on 13/06/2016.
@@ -16,6 +17,8 @@ public class GameWorld {
 
     private Bird bird;
 
+    private ScrollHandler scrollHandler;
+
     /**
      * Constructor of the GameWorld
      * The midPointY will make that the bird stays in the middle of the screen
@@ -25,6 +28,7 @@ public class GameWorld {
      */
     public GameWorld(int midPointY) {
         bird = new Bird(33, midPointY - 5, 17, 12);
+        scrollHandler = new ScrollHandler(midPointY + 66);
     }
 
     /**
@@ -34,7 +38,7 @@ public class GameWorld {
      */
     public void update(float delta) {
         bird.update(delta);
-
+        scrollHandler.update(delta);
 //        Gdx.app.log("GameWorld", "update");
         // ****** Test the camera ******
 //        rectangle.x++;
@@ -48,6 +52,15 @@ public class GameWorld {
      */
     public Bird getBird() {
         return bird;
+    }
+
+    /**
+     * Getter
+     *
+     * @return
+     */
+    public ScrollHandler getScrollHandler() {
+        return scrollHandler;
     }
 
     /**
