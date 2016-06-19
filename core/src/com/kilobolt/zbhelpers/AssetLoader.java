@@ -1,6 +1,7 @@
 package com.kilobolt.zbhelpers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -32,6 +33,11 @@ public class AssetLoader {
     public static TextureRegion skullUp;
     public static TextureRegion skullDown;
     public static TextureRegion bar;
+
+    /*
+     * Sounds
+     */
+    public static Sound dead;
 
     /**
      * Method that will load images
@@ -91,6 +97,8 @@ public class AssetLoader {
         bar = new TextureRegion(texture, 136, 16, 22, 3);
         bar.flip(false, true);
 
+        // Initialize dead sound
+        dead = Gdx.audio.newSound(Gdx.files.internal("data/dead.wav"));
     }
 
     /**

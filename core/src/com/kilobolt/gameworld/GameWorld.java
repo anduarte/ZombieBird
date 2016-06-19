@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
 import com.kilobolt.gameobjects.Bird;
 import com.kilobolt.gameobjects.ScrollHandler;
+import com.kilobolt.zbhelpers.AssetLoader;
 
 /**
  * Created by andre on 13/06/2016.
@@ -18,6 +19,8 @@ public class GameWorld {
     private Bird bird;
 
     private ScrollHandler scrollHandler;
+
+    private boolean isAlive = true;
 
     /**
      * Constructor of the GameWorld
@@ -39,6 +42,13 @@ public class GameWorld {
     public void update(float delta) {
         bird.update(delta);
         scrollHandler.update(delta);
+
+        if (isAlive && scrollHandler.collides(bird)) {
+            scrollHandler.stop();
+            AssetLoader.dead.play();
+            isAlive = false;
+        }
+
 //        Gdx.app.log("GameWorld", "update");
         // ****** Test the camera ******
 //        rectangle.x++;

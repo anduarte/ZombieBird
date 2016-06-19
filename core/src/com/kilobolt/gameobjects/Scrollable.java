@@ -51,6 +51,10 @@ public abstract class Scrollable {
         isScrolledLeft = false;
     }
 
+    public void stop() {
+        velocity.x = 0;
+    }
+
     /*
      * Class getters
      */
