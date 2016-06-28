@@ -49,7 +49,7 @@ public class Pipe extends Scrollable {
 
     @Override
     public void update(float delta) {
-        // Call the update method in the superclass (Scrollable)
+        // Call the updateRunning method in the superclass (Scrollable)
         super.update(delta);
 
         // The set() method allows you to set the top left corner's x, y
@@ -87,6 +87,18 @@ public class Pipe extends Scrollable {
                     || Intersector.overlaps(bird.getBoundingCircle(), skullDown));
         }
         return false;
+    }
+
+    @Override
+    /**
+     * Restart Object(Grass and pipes) when the player loses
+     *
+     * @param x X position
+     * @param scrollSpeed Velocity of the objects
+     */
+    public void onRestart(float x, float scrollSpeed) {
+        velocity.x = scrollSpeed;
+        reset(x);
     }
 
     /*

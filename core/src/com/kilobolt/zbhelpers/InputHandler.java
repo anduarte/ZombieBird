@@ -2,6 +2,7 @@ package com.kilobolt.zbhelpers;
 
 import com.badlogic.gdx.InputProcessor;
 import com.kilobolt.gameobjects.Bird;
+import com.kilobolt.gameworld.GameWorld;
 
 /**
  * Created by andre on 14/06/2016.
@@ -13,14 +14,19 @@ public class InputHandler implements InputProcessor {
     /** Instance of the bird from the gameScreen */
     private Bird bird;
 
+    // Reference to the gameWorld
+    private GameWorld gameWorld;
+
     /**
      * Constructor of the InputHandler
      * Access to the Bird reference of the game screen to make it react to inputs
      *
-     * @param bird Reference of the Bird
+     * @param gameWorld Reference GameWorld
      */
-    public InputHandler(Bird bird) {
-        this.bird = bird;
+    public InputHandler(GameWorld gameWorld) {
+        // myBird now represents the gameWorld's bird.
+        this.gameWorld = gameWorld;
+        bird = gameWorld.getBird();
     }
 
     @Override
@@ -40,8 +46,19 @@ public class InputHandler implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        if (gameWorld.isReady()) {
+            gameWorld.start();
+        }
+
         bird.onClick();
-        return true;        // Return true to say we handled the touch.
+
+        if (gameWorld.isGameOver() || gameWorld.isHighScore()) {
+            // Reset all variables, go to GameState.READ
+            gameWorld.restart();
+        }
+
+        // Return true to say we handled the touch.
+        return true;
     }
 
     @Override

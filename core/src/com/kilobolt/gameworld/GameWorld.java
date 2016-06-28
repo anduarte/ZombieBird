@@ -10,7 +10,7 @@ import com.kilobolt.zbhelpers.AssetLoader;
 /**
  * Created by andre on 13/06/2016.
  *
- * Helper class responsible for update the game objects
+ * Helper class responsible for updateRunning the game objects
  */
 public class GameWorld {
 
@@ -18,14 +18,16 @@ public class GameWorld {
 //    private Rectangle rectangle = new Rectangle(0, 0, 17, 12);
 
     private Bird bird;
-
     private ScrollHandler scrollHandler;
-
     private Rectangle ground;
-
     private int score = 0;
     // private boolean isAlive = true;
 
+    // Current state of the game
+    private GameState currentState;
+
+    // Vertical middle of the screen
+    private int midPointY;
     /**
      * Constructor of the GameWorld
      * The midPointY will make that the bird stays in the middle of the screen
@@ -34,9 +36,36 @@ public class GameWorld {
      * @param midPointY Vertical middle of the screen
      */
     public GameWorld(int midPointY) {
+        this.midPointY = midPointY;
         bird = new Bird(33, midPointY - 5, 17, 12);
         scrollHandler = new ScrollHandler(this, midPointY + 66);
         ground = new Rectangle(0, midPointY + 66, 136, 11);
+        currentState = GameState.READY;
+    }
+
+    /**
+     * Switch to the update correspondent to the current state
+     *
+     * @param delta
+     */
+    public void update(float delta) {
+
+        switch (currentState) {
+            case READY:
+                updateReady(delta);
+                break;
+
+            case RUNNING:
+                updateRunning(delta);
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    private void updateReady(float delta) {
+        // Do nothing for now
     }
 
     /**
@@ -44,9 +73,9 @@ public class GameWorld {
      *
      * @param delta Number of seconds since the last time that render method was called
      */
-    public void update(float delta) {
+    public void updateRunning(float delta) {
         // Add a delta cap so that if our game takes too long
-        // to update, we will not break our collision detection.
+        // to updateRunning, we will not break our collision detection.
 
         if (delta > .15f) {
             delta = .15f;
@@ -65,6 +94,13 @@ public class GameWorld {
             scrollHandler.stop();
             bird.die();
             bird.decelerate();
+            currentState = GameState.GAMEOVER;
+
+            // Check if is the high score and updates it
+            if (score > AssetLoader.getHighScore()) {
+                AssetLoader.setHighScore(score);
+                currentState = GameState.HIGHSCORE;
+            }
         }
 
 //        if (isAlive && scrollHandler.collides(bird)) {
@@ -73,7 +109,7 @@ public class GameWorld {
 //            isAlive = false;
 //        }
 
-//        Gdx.app.log("GameWorld", "update");
+//        Gdx.app.log("GameWorld", "updateRunning");
         // ****** Test the camera ******
 //        rectangle.x++;
 //        if (rectangle.x > 137) rectangle.x = 0;
@@ -86,6 +122,46 @@ public class GameWorld {
      */
     public void addScore(int increment) {
         score += increment;
+    }
+
+    /**
+     * Check game state
+     */
+    public boolean isReady() {
+        return currentState == GameState.READY;
+    }
+
+    /**
+     * Check game state
+     */
+    public void start() {
+        currentState = GameState.RUNNING;
+    }
+
+    /**
+     * Check game state
+     */
+    public boolean isHighScore() {
+        return currentState == GameState.HIGHSCORE;
+    }
+
+    /**
+     * Restart the variables of the game.
+     * currentState, score, bird position, scrollHandler
+     */
+    public void restart() {
+        currentState = GameState.READY;
+        score = 0;
+        bird.onRestart(midPointY - 5);
+        scrollHandler.onRestart();
+        currentState = GameState.READY;
+    }
+
+    /**
+     * Check game state
+     */
+    public boolean isGameOver() {
+        return currentState == GameState.GAMEOVER;
     }
 
     /**
@@ -123,4 +199,13 @@ public class GameWorld {
 //    public Rectangle getRectangle() {
 //        return rectangle;
 //    }
+
+    /**
+     * GameState enum for divide the game into multiple states
+     */
+    public enum GameState {
+        READY, RUNNING, GAMEOVER, HIGHSCORE
+    }
 }
+
+

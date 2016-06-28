@@ -51,6 +51,17 @@ public abstract class Scrollable {
         isScrolledLeft = false;
     }
 
+    /**
+     * Restart Object(Grass and pipes) when the player loses
+     *
+     * @param x X position
+     * @param scrollSpeed Velocity of the objects
+     */
+    public void onRestart(float x, float scrollSpeed) {
+        position.x = x;
+        velocity.x = scrollSpeed;
+    }
+
     public void stop() {
         velocity.x = 0;
     }

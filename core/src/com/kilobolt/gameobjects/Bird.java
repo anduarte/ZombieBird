@@ -48,7 +48,7 @@ public class  Bird {
      */
     public void update(float delta) {
         // Multiply the acceleration and velocity vectors by the delta,
-        // which is the amount of time that has passed since the update method was  previously called
+        // which is the amount of time that has passed since the updateRunning method was  previously called
         // This has a normalizing effect
         // By scaling our Vectors with delta, we can achieve frame-rate independent movement
         velocity.add(acceleration.cpy().scl(delta)); //  Vector2.cpy() will create a Vector2 rather than recycling which will be calling GB every FPS
@@ -56,6 +56,12 @@ public class  Bird {
         // Don't gain velocity upper than 200
         if (velocity.y > 200) {
             velocity.y = 200;
+        }
+
+        // Ceiling check
+        if (position.y < -13) {
+            position.y = -13;
+            velocity.y = 0;
         }
 
         // Give the new position of the bird
@@ -127,6 +133,21 @@ public class  Bird {
      */
     public void decelerate() {
         acceleration.y = 0;
+    }
+
+    /**
+     * Restart the bird when the player loses
+     *
+     * @param y Y position
+     */
+    public void onRestart(int y) {
+        rotation = 0;
+        position.y = y;
+        velocity.x = 0;
+        velocity.y = 0;
+        acceleration.x = 0;
+        acceleration.y = 460;
+        isAlive = true;
     }
 
     /**

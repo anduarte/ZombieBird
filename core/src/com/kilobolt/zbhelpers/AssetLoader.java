@@ -1,6 +1,7 @@
 package com.kilobolt.zbhelpers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -47,6 +48,11 @@ public class AssetLoader {
      */
     public static BitmapFont font;
     public static BitmapFont shadow;
+
+    /*
+     * Store data
+     */
+    public static Preferences highScore;
 
     /**
      * Method that will load images
@@ -116,6 +122,14 @@ public class AssetLoader {
         font.getData().setScale(.25f, -.25f);
         shadow = new BitmapFont(Gdx.files.internal("data/shadow.fnt"));
         shadow.getData().setScale(.25f, -.25f);
+
+        // Create (or retrieve existing) preferences file
+        highScore = Gdx.app.getPreferences("ZombieBird");
+
+        // Provide default high score of 0
+        if (!highScore.contains("highScore")) {
+            highScore.putInteger("highScore", 0);
+        }
     }
 
     /**
@@ -130,4 +144,20 @@ public class AssetLoader {
         shadow.dispose();
     }
 
+    /**
+     * Receives an integer and maps it to the String highScore in prefs
+     */
+     public static void setHighScore(int val) {
+        highScore.putInteger("highScore", val);
+        highScore.flush();
+    }
+
+    /**
+     * Retrieves the current high score
+     *
+     * @return Current high score
+     */
+    public static int getHighScore() {
+        return highScore.getInteger("highScore");
+    }
 }

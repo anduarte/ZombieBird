@@ -16,7 +16,7 @@ import com.kilobolt.zbhelpers.InputHandler;
  */
 public class GameScreen implements Screen {
 
-    /** Instance responsible for update the game objects */
+    /** Instance responsible for updateRunning the game objects */
     private GameWorld gameWorld;
 
     /** Instance responsible for rendering the game objects */
@@ -46,7 +46,7 @@ public class GameScreen implements Screen {
         gameRenderer = new GameRenderer(gameWorld, (int) gameHeight, midPointY); // Need to have  reference to the game world that it will be drawing
 
         // We are telling libGDX to take our new InputHandler as its processor
-        Gdx.input.setInputProcessor(new InputHandler(gameWorld.getBird()));
+        Gdx.input.setInputProcessor(new InputHandler(gameWorld));
     }
 
     @Override
@@ -60,16 +60,16 @@ public class GameScreen implements Screen {
         runTime += delta;
 
         // Sets a color to fill the screen with (RGB = 10, 15, 230), Opacity of 1 (100%)
-        Gdx.gl.glClearColor(10/255.0f, 15/255.0f, 230/255.0f, 1f);
+        //Gdx.gl.glClearColor(10/255.0f, 15/255.0f, 230/255.0f, 1f);
 
         // Fills the screen with the selected color
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         // Print how many times that the render method would be called in one second.
         // This is equivalent to FPS.
         //Gdx.app.log("GameScreen FPS", (int) (1 / delta) + "");
 
-        gameWorld.update(delta);
+        gameWorld.updateRunning(delta);
         gameRenderer.render(runTime);
     }
 
