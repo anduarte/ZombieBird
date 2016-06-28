@@ -2,6 +2,7 @@ package com.kilobolt.gameobjects;
 
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
+import com.kilobolt.zbhelpers.AssetLoader;
 
 /**
  * Created by andre on 14/06/2016.
@@ -17,6 +18,8 @@ public class  Bird {
     private int height;
 
     private Circle boundingCircle;
+
+    private boolean isAlive;
 
     /**
      * Bird construct
@@ -34,6 +37,8 @@ public class  Bird {
         acceleration = new Vector2(0, 460);
 
         boundingCircle = new Circle();
+
+        isAlive = true;
     }
 
     /**
@@ -70,7 +75,7 @@ public class  Bird {
         }
 
         // Rotate clockwise (falling)
-        if (isFalling()) {
+        if (isFalling() || !isAlive) {
             rotation += 480 * delta; // Delta will make the bird rotate at the same rate even if the game slows down
 
             if (rotation > 90) {
@@ -96,14 +101,32 @@ public class  Bird {
      * @return True if the bird stop animating
      */
     public boolean shouldntFlap() {
-        return velocity.y > 70;
+        return velocity.y > 70 || !isAlive;
     }
 
     /**
      * Method use when the screen is clicked or touched
      */
     public void onClick() {
-        velocity.y = -140;
+        if (isAlive) {
+            AssetLoader.flap.play();
+            velocity.y = -140;
+        }
+    }
+
+    /**
+     * Change variables for the bird dead
+     */
+    public void die() {
+        isAlive = false;
+        velocity.y = 0;
+    }
+
+    /**
+     * We want the bird to stop accelerating downwards once it is dead.
+     */
+    public void decelerate() {
+        acceleration.y = 0;
     }
 
     /**
@@ -158,5 +181,14 @@ public class  Bird {
      */
     public Circle getBoundingCircle() {
         return boundingCircle;
+    }
+
+    /**
+     * Getter
+     *
+     * @return
+     */
+    public boolean isAlive() {
+        return isAlive;
     }
 }

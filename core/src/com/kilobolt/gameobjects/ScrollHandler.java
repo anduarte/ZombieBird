@@ -1,5 +1,8 @@
 package com.kilobolt.gameobjects;
 
+import com.kilobolt.gameworld.GameWorld;
+import com.kilobolt.zbhelpers.AssetLoader;
+
 /**
  * Created by andre on 19/06/2016.
  */
@@ -19,12 +22,16 @@ public class ScrollHandler {
     private Pipe pipe2;
     private Pipe pipe3;
 
+    // Reference to GameWorld
+    private GameWorld gameWorld;
+
     /**
      * Constructor
      *
      * @param yPos Where the object will be created on the y position
      */
-    public ScrollHandler(float yPos) {
+    public ScrollHandler(GameWorld gameWorld, float yPos) {
+        this.gameWorld = gameWorld;
         frontGrass = new Grass(0, yPos, 143, 11, SCROLL_SPEED);
         backGrass = new Grass(frontGrass.getTailX(), yPos, 143, 11, SCROLL_SPEED);
 
@@ -74,7 +81,36 @@ public class ScrollHandler {
      * @return True if any pipe hits the bird
      */
     public boolean collides(Bird bird) {
-        return (pipe1.collides(bird) || pipe2.collides(bird) || pipe3.collides(bird));
+
+        if (!pipe1.isScored()
+                && pipe1.getX() + (pipe1.getWidth() / 2) < bird.getX()
+                + bird.getWidth()) {
+            addScore(1);
+            pipe1.setScored(true);
+            AssetLoader.coin.play();
+        } else if (!pipe2.isScored()
+                && pipe2.getX() + (pipe2.getWidth() / 2) < bird.getX()
+                + bird.getWidth()) {
+            addScore(1);
+            pipe2.setScored(true);
+            AssetLoader.coin.play();
+
+        } else if (!pipe3.isScored()
+                && pipe3.getX() + (pipe3.getWidth() / 2) < bird.getX()
+                + bird.getWidth()) {
+            addScore(1);
+            pipe3.setScored(true);
+            AssetLoader.coin.play();
+
+        }
+
+        return (pipe1.collides(bird) || pipe2.collides(bird) || pipe3
+                .collides(bird));
+    }
+
+    // Access to the game score on the game world class
+    private void addScore(int increment) {
+        gameWorld.addScore(increment);
     }
 
     /*

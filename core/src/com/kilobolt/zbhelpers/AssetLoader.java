@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
@@ -38,6 +39,14 @@ public class AssetLoader {
      * Sounds
      */
     public static Sound dead;
+    public static Sound flap;
+    public static Sound coin;
+
+    /*
+     * Text font
+     */
+    public static BitmapFont font;
+    public static BitmapFont shadow;
 
     /**
      * Method that will load images
@@ -99,6 +108,14 @@ public class AssetLoader {
 
         // Initialize dead sound
         dead = Gdx.audio.newSound(Gdx.files.internal("data/dead.wav"));
+        flap = Gdx.audio.newSound(Gdx.files.internal("data/flap.wav"));
+        coin = Gdx.audio.newSound(Gdx.files.internal("data/coin.wav"));
+
+        // Initialize fonts
+        font = new BitmapFont(Gdx.files.internal("data/text.fnt"));
+        font.getData().setScale(.25f, -.25f);
+        shadow = new BitmapFont(Gdx.files.internal("data/shadow.fnt"));
+        shadow.getData().setScale(.25f, -.25f);
     }
 
     /**
@@ -106,6 +123,11 @@ public class AssetLoader {
      */
     public static void dispose() {
         texture.dispose();
+        dead.dispose();
+        flap.dispose();
+        coin.dispose();
+        font.dispose();
+        shadow.dispose();
     }
 
 }

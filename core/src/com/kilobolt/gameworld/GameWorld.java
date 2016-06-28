@@ -1,6 +1,7 @@
 package com.kilobolt.gameworld;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.kilobolt.gameobjects.Bird;
 import com.kilobolt.gameobjects.ScrollHandler;
@@ -20,7 +21,10 @@ public class GameWorld {
 
     private ScrollHandler scrollHandler;
 
-    private boolean isAlive = true;
+    private Rectangle ground;
+
+    private int score = 0;
+    // private boolean isAlive = true;
 
     /**
      * Constructor of the GameWorld
@@ -31,7 +35,8 @@ public class GameWorld {
      */
     public GameWorld(int midPointY) {
         bird = new Bird(33, midPointY - 5, 17, 12);
-        scrollHandler = new ScrollHandler(midPointY + 66);
+        scrollHandler = new ScrollHandler(this, midPointY + 66);
+        ground = new Rectangle(0, midPointY + 66, 136, 11);
     }
 
     /**
@@ -40,19 +45,56 @@ public class GameWorld {
      * @param delta Number of seconds since the last time that render method was called
      */
     public void update(float delta) {
+        // Add a delta cap so that if our game takes too long
+        // to update, we will not break our collision detection.
+
+        if (delta > .15f) {
+            delta = .15f;
+        }
+
         bird.update(delta);
         scrollHandler.update(delta);
 
-        if (isAlive && scrollHandler.collides(bird)) {
+        if (scrollHandler.collides(bird) && bird.isAlive()) {
             scrollHandler.stop();
+            bird.die();
             AssetLoader.dead.play();
-            isAlive = false;
         }
+
+        if (Intersector.overlaps(bird.getBoundingCircle(), ground)) {
+            scrollHandler.stop();
+            bird.die();
+            bird.decelerate();
+        }
+
+//        if (isAlive && scrollHandler.collides(bird)) {
+//            scrollHandler.stop();
+//            AssetLoader.dead.play();
+//            isAlive = false;
+//        }
 
 //        Gdx.app.log("GameWorld", "update");
         // ****** Test the camera ******
 //        rectangle.x++;
 //        if (rectangle.x > 137) rectangle.x = 0;
+    }
+
+    /**
+     * Increment score
+     *
+     * @param increment Increment by
+     */
+    public void addScore(int increment) {
+        score += increment;
+    }
+
+    /**
+     * Getter
+     *
+     * @return
+     */
+    public int getScore() {
+        return score;
     }
 
     /**

@@ -21,6 +21,8 @@ public class Pipe extends Scrollable {
     private Rectangle barUp;
     private Rectangle barDown;
 
+    // If the bird passes between the two pipes
+    private boolean isScored = false;
 
     /**
      * Constructor of the scrollable class
@@ -73,6 +75,8 @@ public class Pipe extends Scrollable {
 
         // Change the height to a random number
         height = random.nextInt(90) + 15;
+
+        isScored = false;
     }
 
     public boolean collides(Bird bird) {
@@ -102,5 +106,16 @@ public class Pipe extends Scrollable {
 
     public Rectangle getBarDown() {
         return barDown;
+    }
+
+    public boolean isScored() {
+        return isScored;
+    }
+
+    /*
+     * Class Setters
+     */
+    public void setScored(boolean bool) {
+        isScored = bool;
     }
 }
