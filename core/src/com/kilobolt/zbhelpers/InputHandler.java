@@ -6,7 +6,7 @@ import com.kilobolt.gameworld.GameWorld;
 
 /**
  * Created by andre on 14/06/2016.
- *
+ * <p>
  * Class that will react to various inputs
  */
 public class InputHandler implements InputProcessor {
@@ -19,8 +19,8 @@ public class InputHandler implements InputProcessor {
 
     /**
      * Constructor of the InputHandler
-     * Access to the Bird reference of the game screen to make it react to inputs
-     *
+     * <p>Access to the Bird reference of the game screen to make it react to inputs
+     * <p>
      * @param gameWorld Reference GameWorld
      */
     public InputHandler(GameWorld gameWorld) {

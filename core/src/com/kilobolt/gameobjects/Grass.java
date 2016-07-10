@@ -6,7 +6,7 @@ package com.kilobolt.gameobjects;
 public class Grass extends Scrollable {
     /**
      * Constructor of the scrollable class
-     *
+     * <p>
      * @param x           X position
      * @param y           Y position
      * @param width       Width of the object
@@ -20,7 +20,7 @@ public class Grass extends Scrollable {
     @Override
     /**
      * Restart to the original positions
-     *
+     * <p>
      * @param x X position
      * @param scrollSpeed Velocity of the objects
      */

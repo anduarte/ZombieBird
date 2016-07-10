@@ -154,7 +154,7 @@ public class AssetLoader {
 
     /**
      * Retrieves the current high score
-     *
+     * <p>
      * @return Current high score
      */
     public static int getHighScore() {

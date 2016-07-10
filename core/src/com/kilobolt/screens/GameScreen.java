@@ -9,9 +9,9 @@ import com.kilobolt.zbhelpers.InputHandler;
 
 /**
  * Created by andre on 13/06/2016.
- *
+ * <p>
  * TODO Add comment about GameScreen class
- * Uses a GameWorld and GameRenderer classes so that the GameScreen doesn't have to do the updating and rendering
+ * <p>Uses a GameWorld and GameRenderer classes so that the GameScreen doesn't have to do the updating and rendering
  *
  */
 public class GameScreen implements Screen {
@@ -52,8 +52,8 @@ public class GameScreen implements Screen {
     @Override
     /**
      * Called by the game loop every time rendering should be performed.
-     * The float delta is the number of seconds that has passed since the last time that the render method was called.
-     *
+     * <p>The float delta is the number of seconds that has passed since the last time that the render method was called.
+     * <p>
      * @param delta Number of seconds since the last time that render method was called
      */
     public void render(float delta) {

@@ -9,7 +9,7 @@ import com.kilobolt.zbhelpers.AssetLoader;
 
 /**
  * Created by andre on 13/06/2016.
- *
+ * <p>
  * Helper class responsible for updateRunning the game objects
  */
 public class GameWorld {
@@ -30,9 +30,9 @@ public class GameWorld {
     private int midPointY;
     /**
      * Constructor of the GameWorld
-     * The midPointY will make that the bird stays in the middle of the screen
+     * <p>The midPointY will make that the bird stays in the middle of the screen
      * no matter what resolution the game runs
-     *
+     * <p>
      * @param midPointY Vertical middle of the screen
      */
     public GameWorld(int midPointY) {
@@ -45,7 +45,7 @@ public class GameWorld {
 
     /**
      * Switch to the update correspondent to the current state
-     *
+     * <p>
      * @param delta
      */
     public void update(float delta) {
@@ -70,7 +70,7 @@ public class GameWorld {
 
     /**
      * Update the game objects
-     *
+     * <p>
      * @param delta Number of seconds since the last time that render method was called
      */
     public void updateRunning(float delta) {
@@ -117,7 +117,7 @@ public class GameWorld {
 
     /**
      * Increment score
-     *
+     * <p>
      * @param increment Increment by
      */
     public void addScore(int increment) {
@@ -147,7 +147,7 @@ public class GameWorld {
 
     /**
      * Restart the variables of the game.
-     * currentState, score, bird position, scrollHandler
+     * <p>currentState, score, bird position, scrollHandler
      */
     public void restart() {
         currentState = GameState.READY;
@@ -166,7 +166,7 @@ public class GameWorld {
 
     /**
      * Getter
-     *
+     * <p>
      * @return
      */
     public int getScore() {
@@ -175,7 +175,7 @@ public class GameWorld {
 
     /**
      * Getter
-     *
+     * <p>
      * @return
      */
     public Bird getBird() {
@@ -184,7 +184,7 @@ public class GameWorld {
 
     /**
      * Getter
-     *
+     * <p>
      * @return
      */
     public ScrollHandler getScrollHandler() {
@@ -193,7 +193,7 @@ public class GameWorld {
 
     /**
      * Getter
-     * USED TO DEBUG
+     * <p>USED TO DEBUG
      * @return Rectangle used to test
      */
 //    public Rectangle getRectangle() {

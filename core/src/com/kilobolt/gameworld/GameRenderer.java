@@ -16,7 +16,7 @@ import com.kilobolt.zbhelpers.AssetLoader;
 
 /**
  * Created by andre on 13/06/2016.
- *
+ * <p>
  * Helper class responsible for rendering the game objects
  */
 public class GameRenderer {
@@ -56,7 +56,7 @@ public class GameRenderer {
 
     /**
      * Construct GameRenderer
-     *
+     * <p>
      * @param gameWorld Reference to the GameWorld of the game
      */
     public GameRenderer(GameWorld gameWorld, int gameHeight, int midPointY) {
@@ -114,7 +114,7 @@ public class GameRenderer {
 
     /**
      * Render the game objects
-     *
+     * <p>
      * @param runTime Determine which frame the bird animation should display
      */
     public void render(float runTime) {

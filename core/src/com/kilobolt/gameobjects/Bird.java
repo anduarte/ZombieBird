@@ -23,7 +23,7 @@ public class  Bird {
 
     /**
      * Bird construct
-     *
+     * <p>
      * @param x X position
      * @param y Y position
      * @param width Bird width
@@ -43,7 +43,7 @@ public class  Bird {
 
     /**
      * Updates the y position of the bird
-     *
+     * <p>
      * @param delta Number of seconds since the last time that render method was called
      */
     public void update(float delta) {
@@ -93,8 +93,8 @@ public class  Bird {
 
     /**
      * Verifies if the bird is falling.
-     * Decide when the bird should begin rotating downwards
-     *
+     * <p>Decide when the bird should begin rotating downwards.
+     * <p>
      * @return True if it is falling
      */
     public boolean isFalling() {
@@ -103,7 +103,7 @@ public class  Bird {
 
     /**
      * Determine when the bird should stop animating
-     *
+     * <p>
      * @return True if the bird stop animating
      */
     public boolean shouldntFlap() {
@@ -137,7 +137,7 @@ public class  Bird {
 
     /**
      * Restart the bird when the player loses
-     *
+     * <p>
      * @param y Y position
      */
     public void onRestart(int y) {
@@ -152,7 +152,7 @@ public class  Bird {
 
     /**
      * Getter
-     *
+     * <p>
      * @return X position
      */
     public float getX() {
@@ -161,7 +161,7 @@ public class  Bird {
 
     /**
      * Getter
-     *
+     * <p>
      * @return Y position
      */
     public float getY() {
@@ -170,7 +170,7 @@ public class  Bird {
 
     /**
      * Getter
-     *
+     * <p>
      * @return Bird height
      */
     public int getHeight() {
@@ -179,7 +179,7 @@ public class  Bird {
 
     /**
      * Getter
-     *
+     * <p>
      * @return Bird width
      */
     public int getWidth() {
@@ -188,7 +188,7 @@ public class  Bird {
 
     /**
      * Getter
-     *
+     * <p>
      * @return Bird rotation
      */
     public float getRotation() {
@@ -197,7 +197,7 @@ public class  Bird {
 
     /**
      * Getter
-     *
+     * <p>
      * @return
      */
     public Circle getBoundingCircle() {
@@ -206,7 +206,7 @@ public class  Bird {
 
     /**
      * Getter
-     *
+     * <p>
      * @return
      */
     public boolean isAlive() {

@@ -26,7 +26,7 @@ public class Pipe extends Scrollable {
 
     /**
      * Constructor of the scrollable class
-     *
+     * <p>
      * @param x           X position
      * @param y           Y position
      * @param width       Width of the object
@@ -92,7 +92,7 @@ public class Pipe extends Scrollable {
     @Override
     /**
      * Restart Object(Grass and pipes) when the player loses
-     *
+     * <p>
      * @param x X position
      * @param scrollSpeed Velocity of the objects
      */

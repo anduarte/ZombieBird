@@ -16,7 +16,7 @@ public abstract class Scrollable {
 
     /**
      * Constructor of the scrollable class
-     *
+     * <p>
      * @param x X position
      * @param y Y position
      * @param width Width of the object
@@ -42,8 +42,8 @@ public abstract class Scrollable {
 
     /**
      * Reset the position of the object
-     * NOTE: Should Override in subclass for more specific behavior
-     *
+     *  <p>NOTE: Should Override in subclass for more specific behavior
+     * <p>
      * @param newX New x position
      */
     public void reset(float newX) {
@@ -53,7 +53,7 @@ public abstract class Scrollable {
 
     /**
      * Restart Object(Grass and pipes) when the player loses
-     *
+     * <p>
      * @param x X position
      * @param scrollSpeed Velocity of the objects
      */

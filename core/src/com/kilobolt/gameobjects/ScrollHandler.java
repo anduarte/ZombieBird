@@ -27,7 +27,7 @@ public class ScrollHandler {
 
     /**
      * Constructor
-     *
+     * <p>
      * @param yPos Where the object will be created on the y position
      */
     public ScrollHandler(GameWorld gameWorld, float yPos) {
@@ -76,7 +76,7 @@ public class ScrollHandler {
 
     /**
      * Check if the bird collides with the pipes
-     *
+     * <p>
      * @param bird The bird
      * @return True if any pipe hits the bird
      */
